@@ -20,52 +20,41 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
 )
 
 const Navbar = () => {
-  const { activeMenu , setActiveMenu, isClicked, setIsCliked, handleClick } = useStateContext();
+  const { activeMenu , setActiveMenu, isClicked, setIsCliked, handleClick, screenSize, setScreenSize } = useStateContext();
+
+  useEffect(() => {
+    const handleResize = () => setScreenSize(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if(screenSize <= 900) {
+      setActiveMenu(false);
+    } else {
+      setActiveMenu(true);
+    }
+  }, [screenSize]);
 
   return (
-    <div className="flex justify-between p-2 md:mx-6 relative">
-      <NavButton
-        title="Menu"
-        customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)}
-        color="blue"
-        icon={<AiOutlineMenu />}
-        />
+    <div className="flex justify-between p-2 md:ml-6 md:mr-6 relative">
+      <NavButton title="Menu" customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)} color="blue" icon={<AiOutlineMenu />} />
 
-<div className="flex">
-        <NavButton
-          title="Cart"
-          customFunc={() => handleClick("cart")}
-          color="blue"
-          icon={<FiShoppingCart />}
-          />
-      </div>
       <div className="flex">
-        <NavButton
-          title="Chat"
-          dotColor="#03c9d7"
-          customFunc={() => handleClick("chat")}
-          color="blue"
-          icon={<BsChatLeft />}
-          />
-      </div>
-      <div className="flex">
-        <NavButton
-          title="Notifications"
-          dotColor="#03c9d7"
-          customFunc={() => handleClick("notification")}
-          color="blue"
-          icon={<RiNotification3Line />}
-          />
-          <TooltipComponent content="Profile" position="BottomCenter">
-            <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg" onClick={() => {}}>
-              <img src={avatar} className="rounded-full w-8 h-8" />
-              <p>
-                <span className="text-gray-400 text-14">Hi, </span> {' '}
-                <span className="text-gray-400 font-bold ml-1 text-14">Michael</span>
-              </p>
-              <MdKeyboardArrowDown className="text-gray-400 text-14" />
-            </div>
-          </TooltipComponent>
+        <NavButton title="Cart" customFunc={() => handleClick("cart")} color="blue" icon={<FiShoppingCart />} />
+        <NavButton title="Chat" dotColor="#03c9d7" customFunc={() => handleClick("chat")} color="blue" icon={<BsChatLeft />} />
+        <NavButton title="Notifications" dotColor="#03c9d7" customFunc={() => handleClick("notification")} color="blue" icon={<RiNotification3Line />} />
+        <TooltipComponent content="Profile" position="BottomCenter">
+          <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg" onClick={() => {}}>
+            <img src={avatar} className="rounded-full w-8 h-8" />
+            <p>
+              <span className="text-gray-400 text-14">Hi, </span> {' '}
+              <span className="text-gray-400 font-bold ml-1 text-14">Michael</span>
+            </p>
+            <MdKeyboardArrowDown className="text-gray-400 text-14" />
+          </div>
+        </TooltipComponent>
 
           {isClicked.cart && <Cart />}
           {isClicked.chat && <Chat />}
