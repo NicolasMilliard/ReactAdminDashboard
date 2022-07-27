@@ -15,14 +15,14 @@ const Cart = () => {
   
   return (
     <div className="bg-half-transparent w-full fixed nav-item top-0 right-0">
-      <div className="float-right h-screen duration-1000 ease-in-out dark:text-gray-200 transition-all dark:bg-[#484852] bg-white md:w-400 p-8">
+      <div className="float-right h-screen duration-1000 ease-in-out dark:text-gray-200 transition-all dark:bg-[#182b4b] bg-white md:w-400 p-8">
         <div className="flex justify-between items-center">
           <p className="font-semibold text-lg">Shopping Cart</p>
           <button
             type='button'
             onClick={handleCloseCart}
             style={{ color: 'rgb(153, 171, 180)', borderRadius: '50%' }}
-            className="text-2xl p-3 hover:drop-shadow-xl hover:bg-light-gray"
+            className="text-2xl p-3 hover:drop-shadow-xl hover:bg-[#111e35]"
             >
               <MdOutlineCancel />
           </button>
@@ -30,17 +30,17 @@ const Cart = () => {
         {cartData?.map((item, index) => (
           <div key={index}>
             <div>
-              <div className="flex items-center leading-8 gap-5 border-b-1 border-color dark:border-gray-600 p-4">
+              <div className="flex items-center leading-8 gap-5 border-b-1 border-color dark:border-gray-400 p-4">
                 <img className="rounded-lg h-80 w-24" src={item.image} alt="" />
                 <div>
                   <p className="font-semibold">{item.name}</p>
                   <p className="text-gray-600 dark:text-gray-400 text-sm font-semibold">{item.category}</p>
                   <div className="flex gap-4 mt-2 items-center">
                     <p className="font-semibold text-lg">{item.price}</p>
-                    <div className="flex items-center border-1 border-r-0 border-color rounded">
-                      <p className="p-2 border-r-1 dark:border-gray-600 border-color text-red-600"><AiOutlineMinus /></p>
-                      <p className="p-2 border-r-1 dark:border-gray-600 border-color text-gray-600">0</p>
-                      <p className="p-2 border-r-1 dark:border-gray-600 border-color text-green-600"><AiOutlinePlus /></p>
+                    <div className="flex items-center border-1 border-color dark:border-gray-400 rounded">
+                      <p className="p-2 dark:border-gray-400 border-color text-red-600"><AiOutlineMinus /></p>
+                      <p className="p-2 dark:border-gray-400 border-color text-gray-400">0</p>
+                      <p className="p-2 dark:border-gray-400 border-color text-green-600"><AiOutlinePlus /></p>
                     </div>
                   </div>
                 </div>

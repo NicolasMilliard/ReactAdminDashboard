@@ -11,7 +11,7 @@ const Pie = ({ id, data, legendVisibility, height }) => {
     id={id}
     legendSettings={{ visible: legendVisibility, background: 'white' }}
     height={height}
-    background={currentMode === 'Dark' ? '#33373e' : '#fff'}
+    background={currentMode === 'Dark' ? '#182b4b' : '#fff'}
     tooltip={{ enable: true}}
     >
       <Inject services={[AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip]} />

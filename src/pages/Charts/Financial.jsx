@@ -19,7 +19,7 @@ const Financial = () => {
   const { currentMode } = useStateContext();
 
   return (
-    <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded3">
+    <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-[#182b4b] rounded-3xl">
       <ChartsHeader category="Financial" title="AAPLE History" />
       <div className="w-full">
         <ChartComponent
@@ -29,7 +29,7 @@ const Financial = () => {
           chartArea={{ border: { width: 0 } }}
           tooltip={{ enable: true, shared: true }}
           crosshair={{ enable: true, lineType: 'Vertical', line: { width: 0 } }}
-          background={currentMode === 'Dark' ? "#33373e" : "#fff"}
+          background={currentMode === 'Dark' ? "#182b4b" : "#fff"}
         >
           <Inject services={[CandleSeries, Tooltip, DateTime, Logarithmic, Crosshair, Zoom]} />
           <SeriesCollectionDirective>
